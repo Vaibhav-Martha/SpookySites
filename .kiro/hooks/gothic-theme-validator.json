@@ -1,0 +1,14 @@
+{
+  "name": "Gothic Theme Validator",
+  "description": "Validates gothic horror theme consistency across the project",
+  "trigger": {
+    "type": "file_save",
+    "pattern": "**/*.{css,jsx,js}"
+  },
+  "actions": [
+    {
+      "type": "message",
+      "content": "Validating gothic theme consistency... Checking for proper dark colors, royal fonts (Cinzel, Playfair Display), and horror atmosphere elements."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Creepster', cursive;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .spooky-button {
+    @apply bg-blood-red hover:bg-red-700 text-ghost-white font-bold py-3 px-6 rounded-lg border-2 border-red-600 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/50 transform hover:scale-105;
+  }
+  
+  .gothic-text {
+    @apply font-gothic;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+  
+  .retro-border {
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1;
+  }
+  
+  .hellfire-border {
+    border: 2px solid #ff4500;
+    box-shadow: 
+      0 0 10px #ff4500,
+      inset 0 0 10px #ff4500,
+      0 0 20px #ff6500,
+      inset 0 0 20px #ff6500;
+    animation: hellfire 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes hellfire {
+    0% { 
+      box-shadow: 
+        0 0 10px #ff4500,
+        inset 0 0 10px #ff4500,
+        0 0 20px #ff6500,
+        inset 0 0 20px #ff6500;
+    }
+    100% { 
+      box-shadow: 
+        0 0 20px #ff6500,
+        inset 0 0 20px #ff6500,
+        0 0 30px #ff8500,
+        inset 0 0 30px #ff8500;
+    }
+  }
+}

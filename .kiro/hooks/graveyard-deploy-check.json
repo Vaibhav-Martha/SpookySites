@@ -1,0 +1,22 @@
+{
+  "name": "Graveyard Deployment Check",
+  "description": "Checks if all graveyard features work before deployment",
+  "trigger": {
+    "type": "manual",
+    "button_text": "🪦 Check Graveyard"
+  },
+  "actions": [
+    {
+      "type": "message",
+      "content": "Performing graveyard deployment check... Ensuring all digital spirits are properly laid to rest and vampire chat is functioning."
+    },
+    {
+      "type": "command",
+      "command": "cd client && npm run build"
+    },
+    {
+      "type": "command", 
+      "command": "cd server && npm test"
+    }
+  ]
+}

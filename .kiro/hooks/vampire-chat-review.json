@@ -1,0 +1,14 @@
+{
+  "name": "Vampire Chat Review",
+  "description": "Reviews vampire chat responses for gothic authenticity",
+  "trigger": {
+    "type": "file_save",
+    "pattern": "**/VampireChat*.jsx"
+  },
+  "actions": [
+    {
+      "type": "message",
+      "content": "Vampire chat file updated! Please review the gothic atmosphere, royal fonts, and ensure Count Dracula's responses maintain proper medieval sophistication and horror theme consistency."
+    }
+  ]
+}
