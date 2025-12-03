@@ -100,8 +100,8 @@ A gothic horror tribute to the social media platforms that have passed into digi
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd graveyard-of-the-forgotten-web
+   git clone https://github.com/Vaibhav-Martha/SpookySites.git
+   cd Spookysites
    ```
 
 2. **Install all dependencies**
@@ -189,7 +189,7 @@ The app features extensive GSAP animations including:
 ## � Deploydment
 
 ### Local Development
-1. Clone the repository: `git clone https://github.com/YOUR_USERNAME/the-graveyard.git`
+1. Clone the repository: `git clone https://github.com/YOUR_USERNAME/the-graveyard.git](https://github.com/Vaibhav-Martha/SpookySites.git`
 2. Install dependencies: `npm run install-all` or use `setup.bat`
 3. Seed demo users: `cd server && npm run seed`
 4. Start development: `npm run dev` or use `start-dev.bat`
