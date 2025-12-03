@@ -108,13 +108,19 @@ A gothic horror tribute to the social media platforms that have passed into digi
    ```bash
    npm run install-all
    ```
+   
+3.**Update server/.env**:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string_here
+   JWT_SECRET=spooky_secret_key_change_in_production
+   ```
 
-3. **Seed demo users (optional)**
+4. **Seed demo users (optional)**
    ```bash
    cd server && npm run seed
    ```
 
-4. **Start the development servers**
+5. **Start the development servers**
    ```bash
    npm run dev
    ```
