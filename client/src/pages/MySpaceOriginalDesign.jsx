@@ -64,6 +64,56 @@ No drama please - just looking for genuine people to connect with!`)
     }
   }
 
+  // MySpace button functions
+  const handleAddToFriends = () => {
+    alert('🎉 Friend request sent! You\'ll be in their Top 8 in no time!')
+  }
+
+  const handleAddToFavorites = () => {
+    alert('⭐ Added to favorites! This profile is now bookmarked in your MySpace.')
+  }
+
+  const handleSendMessage = () => {
+    alert('💌 Opening MySpace messenger... Send them your thoughts!')
+  }
+
+  const handleForwardToFriend = () => {
+    alert('📤 Forward this profile to a friend! Spread the MySpace love.')
+  }
+
+  const handleAddToGroup = () => {
+    alert('👥 Add to group! Choose which MySpace group to invite them to.')
+  }
+
+  const handleBlockUser = () => {
+    if (confirm('Are you sure you want to block this user?')) {
+      alert('🚫 User blocked! They won\'t be able to contact you anymore.')
+    }
+  }
+
+  const handleRankUser = () => {
+    const rating = prompt('Rate this user (1-10):')
+    if (rating && rating >= 1 && rating <= 10) {
+      alert(`⭐ You rated this user ${rating}/10! Thanks for the feedback.`)
+    }
+  }
+
+  // Music player functions
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying)
+    alert(isPlaying ? '⏸️ Music paused' : '▶️ Now playing: ' + profileSong)
+  }
+
+  const handlePrevious = () => {
+    alert('⏮️ Previous track: Switching to previous song in playlist')
+  }
+
+  const handleNext = () => {
+    alert('⏭️ Next track: Switching to next song in playlist')
+  }
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Verdana, Arial, sans-serif' }}>
       {/* Authentic MySpace Header */}
@@ -145,25 +195,46 @@ No drama please - just looking for genuine people to connect with!`)
                   </div>
 
                   <div className="mt-4 space-y-1">
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleAddToFriends}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Add to Friends
                     </button>
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleAddToFavorites}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Add to Favorites
                     </button>
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleSendMessage}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Send Message
                     </button>
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleForwardToFriend}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Forward to Friend
                     </button>
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleAddToGroup}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Add to Group
                     </button>
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleBlockUser}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Block User
                     </button>
-                    <button className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700">
+                    <button 
+                      onClick={handleRankUser}
+                      className="w-full bg-blue-600 text-white text-xs py-1 hover:bg-blue-700 transition-colors"
+                    >
                       Rank User
                     </button>
                   </div>
@@ -259,9 +330,24 @@ No drama please - just looking for genuine people to connect with!`)
                         className="w-full border border-gray-300 p-1 text-sm"
                       />
                       <div className="flex items-center space-x-2 mt-2">
-                        <button className="text-sm bg-gray-200 px-2 py-1 border">⏮️</button>
-                        <button className="text-sm bg-gray-200 px-2 py-1 border">⏯️</button>
-                        <button className="text-sm bg-gray-200 px-2 py-1 border">⏭️</button>
+                        <button 
+                          onClick={handlePrevious}
+                          className="text-sm bg-gray-200 px-2 py-1 border hover:bg-gray-300 transition-colors"
+                        >
+                          ⏮️
+                        </button>
+                        <button 
+                          onClick={handlePlayPause}
+                          className="text-sm bg-gray-200 px-2 py-1 border hover:bg-gray-300 transition-colors"
+                        >
+                          {isPlaying ? '⏸️' : '▶️'}
+                        </button>
+                        <button 
+                          onClick={handleNext}
+                          className="text-sm bg-gray-200 px-2 py-1 border hover:bg-gray-300 transition-colors"
+                        >
+                          ⏭️
+                        </button>
                         <div className="flex-1 bg-gray-200 h-2 border">
                           <div className="bg-blue-500 h-full w-1/3"></div>
                         </div>

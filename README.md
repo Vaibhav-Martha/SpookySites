@@ -101,23 +101,100 @@ A gothic horror tribute to the social media platforms that have passed into digi
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Vaibhav-Martha/SpookySites.git
-   cd Spookysites
+   cd SpookySites
    ```
 
 2. **Install all dependencies**
    ```bash
    npm run install-all
    ```
+   
+   Or use the batch file:
+   ```bash
+   setup.bat
+   ```
 
-3. **Seed demo users (optional)**
+3. **Set up environment variables**
+   ```bash
+   cd server
+   cp .env.example .env
+   ```
+   
+   Then edit `server/.env` with your MongoDB connection:
+   - **Option A**: Create free MongoDB Atlas account at https://www.mongodb.com/atlas
+   - **Option B**: Use local MongoDB if installed
+   - Update `MONGODB_URI` with your connection string
+   - Change `JWT_SECRET` to a secure random string
+
+4. **Seed demo users**
    ```bash
    cd server && npm run seed
    ```
 
-4. **Start the development servers**
+5. **Start the development servers**
    ```bash
    npm run dev
    ```
+   
+   Or use the batch file:
+   ```bash
+   start-dev.bat
+   ```
+
+### 🔧 Quick Setup for Testing
+
+If you just want to test the project quickly:
+
+1. **Get a free MongoDB Atlas database**:
+   - Go to https://www.mongodb.com/atlas
+   - Create free account and cluster
+   - Get connection string
+   
+2. **Update server/.env**:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string_here
+   JWT_SECRET=spooky_secret_key_change_in_production
+   ```
+
+3. **Run the seeder to create demo accounts**:
+   ```bash
+   cd server && npm run seed
+   ```
+
+## 🌐 Deploy to Vercel
+
+### **Quick Vercel Deployment:**
+
+1. **Prerequisites**:
+   - MongoDB Atlas account (free): https://www.mongodb.com/atlas
+   - Vercel account (free): https://vercel.com
+
+2. **Deploy Steps**:
+   ```bash
+   # Install Vercel CLI
+   npm install -g vercel
+   
+   # Deploy from your project directory
+   vercel
+   ```
+
+3. **Set Environment Variables in Vercel Dashboard**:
+   ```env
+   MONGODB_URI=your_mongodb_atlas_connection_string
+   JWT_SECRET=your_secure_random_secret_key
+   NODE_ENV=production
+   ```
+
+4. **Database Setup**:
+   - Create MongoDB Atlas cluster (free tier)
+   - Whitelist all IPs (0.0.0.0/0) for Vercel
+   - Use connection string in environment variables
+
+### **Alternative: Vercel Dashboard Deployment**
+1. Go to https://vercel.com/dashboard
+2. Import your GitHub repository
+3. Set environment variables
+4. Deploy automatically
    
    Or use the batch file:
    ```bash

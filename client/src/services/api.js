@@ -1,8 +1,11 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-// Configure axios defaults
-const API_BASE_URL = 'http://localhost:5001'
+// Configure axios defaults - works for both development and production
+const API_BASE_URL = import.meta.env.PROD 
+  ? '' // In production, API calls will go to same domain
+  : 'http://localhost:5001' // In development, use local server
+
 axios.defaults.baseURL = API_BASE_URL
 
 // Add auth token to requests
