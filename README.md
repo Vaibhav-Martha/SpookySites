@@ -109,6 +109,7 @@ A gothic horror tribute to the social media platforms that have passed into digi
    npm run install-all
    ```
    
+<<<<<<< HEAD
    Or use the batch file:
    ```bash
    setup.bat
