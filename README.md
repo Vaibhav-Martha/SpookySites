@@ -186,36 +186,6 @@ The app features extensive GSAP animations including:
 - **Gothic Typography**: Custom fonts and text shadows
 - **Animated Cursors**: Spooky hover effects throughout
 
-## � Deploydment
-
-### Local Development
-1. Clone the repository: `git clone https://github.com/YOUR_USERNAME/the-graveyard.git](https://github.com/Vaibhav-Martha/SpookySites.git`
-2. Install dependencies: `npm run install-all` or use `setup.bat`
-3. Seed demo users: `cd server && npm run seed`
-4. Start development: `npm run dev` or use `start-dev.bat`
-
-### Production Deployment
-- **Frontend**: Deploy `client/` folder to Vercel, Netlify, or GitHub Pages
-- **Backend**: Deploy `server/` folder to Heroku, Railway, or DigitalOcean
-- **Database**: Use MongoDB Atlas for production database
-- **Environment**: Set up production environment variables
-
-## 🔮 API Endpoints
-
-### Authentication
-- `POST /api/auth/signup` - Register new user
-- `POST /api/auth/login` - User login
-- `GET /api/auth/profile` - Get user profile (protected)
-- `POST /api/auth/logout` - User logout
-
-### Protected Endpoints (require JWT token)
-- `GET /api/health` - Server status
-- `GET /api/graveyard/stats` - Visitor statistics
-- `GET /api/orkut/scraps` - Retrieve scraps
-- `POST /api/orkut/scraps` - Add new scrap
-- `GET /api/myspace/themes` - Available themes
-- `GET /api/geocities/gif-packs` - GIF pack data
-- `POST /api/geocities/guestbook` - Sign guestbook
 
 ## 👻 Contributing
 
