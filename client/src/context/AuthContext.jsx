@@ -76,20 +76,6 @@ export const AuthProvider = ({ children }) => {
       return { success: false, message: 'Signup failed' }
     }
   }
-      
-      // Save token to cookie (expires in 7 days)
-      Cookies.set('graveyard_token', newToken, { expires: 7 })
-      
-      setToken(newToken)
-      setUser(userData)
-      
-      return { success: true, message: response.data.message }
-    } catch (error) {
-      const errorMessage = error.response?.data?.message || 'Signup failed'
-      const details = error.response?.data?.details || []
-      return { success: false, message: errorMessage, details }
-    }
-  }
 
   const logout = () => {
     // Remove token from cookie
