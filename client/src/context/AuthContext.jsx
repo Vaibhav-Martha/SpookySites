@@ -2,6 +2,13 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
+// Configure axios base URL for development
+const API_BASE_URL = import.meta.env.PROD 
+  ? '' // In production, API calls will go to same domain
+  : 'http://localhost:5001' // In development, use local server
+
+axios.defaults.baseURL = API_BASE_URL
+
 const AuthContext = createContext()
 
 export const useAuth = () => {

@@ -140,7 +140,7 @@ No drama please - just looking for genuine people to connect with!`)
                 </td>
               </tr>
               <tr>
-                <td className="p-4">
+                <td className="p-4" style={{ color: currentThemeStyle.text }}>
                   <div className="text-center mb-4">
                     <div className="w-32 h-32 bg-gray-200 border border-gray-400 mx-auto mb-2 flex items-center justify-center text-4xl">
                       {user?.profile?.avatar || '👤'}
@@ -211,13 +211,14 @@ No drama please - just looking for genuine people to connect with!`)
                 </td>
               </tr>
               <tr>
-                <td className="p-4">
+                <td className="p-4" style={{ color: currentThemeStyle.text }}>
                   <div className="mb-4">
                     <h4 className="font-bold text-sm mb-2">About me:</h4>
                     <textarea
                       value={aboutMe}
                       onChange={(e) => setAboutMe(e.target.value)}
-                      className="w-full border border-gray-300 p-2 text-sm h-32 resize-none"
+                      className="w-full border border-gray-300 p-2 text-sm h-32 resize-none text-black"
+                      style={{ backgroundColor: currentTheme === 'emo' ? '#333' : '#fff', color: currentTheme === 'emo' ? '#fff' : '#000' }}
                     />
                   </div>
 
@@ -226,7 +227,8 @@ No drama please - just looking for genuine people to connect with!`)
                     <textarea
                       value={whoIdLikeToMeet}
                       onChange={(e) => setWhoIdLikeToMeet(e.target.value)}
-                      className="w-full border border-gray-300 p-2 text-sm h-24 resize-none"
+                      className="w-full border border-gray-300 p-2 text-sm h-24 resize-none text-black"
+                      style={{ backgroundColor: currentTheme === 'emo' ? '#333' : '#fff', color: currentTheme === 'emo' ? '#fff' : '#000' }}
                     />
                   </div>
                 </td>
@@ -241,7 +243,7 @@ No drama please - just looking for genuine people to connect with!`)
                 </td>
               </tr>
               <tr>
-                <td className="p-4">
+                <td className="p-4" style={{ color: currentThemeStyle.text }}>
                   <p className="text-xs mb-3">{user?.username} has <strong>{friends.length}</strong> friends.</p>
                   <div className="grid grid-cols-4 gap-4">
                     {friends.map((friend) => (
@@ -265,14 +267,15 @@ No drama please - just looking for genuine people to connect with!`)
                 </td>
               </tr>
               <tr>
-                <td className="p-4">
+                <td className="p-4" style={{ color: currentThemeStyle.text }}>
                   {/* Add comment */}
-                  <div className="mb-4 p-3 bg-gray-100 border">
-                    <h4 className="font-bold text-sm mb-2 text-black">Leave a Comment:</h4>
+                  <div className="mb-4 p-3 border" style={{ backgroundColor: currentTheme === 'emo' ? '#222' : '#f5f5f5' }}>
+                    <h4 className="font-bold text-sm mb-2" style={{ color: currentThemeStyle.text }}>Leave a Comment:</h4>
                     <textarea
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
-                      className="w-full border border-gray-300 p-2 text-sm resize-none text-black"
+                      className="w-full border border-gray-300 p-2 text-sm resize-none"
+                      style={{ backgroundColor: currentTheme === 'emo' ? '#333' : '#fff', color: currentTheme === 'emo' ? '#fff' : '#000' }}
                       rows="3"
                       placeholder="Write a comment..."
                     />
@@ -292,7 +295,7 @@ No drama please - just looking for genuine people to connect with!`)
                             {comment.photo}
                           </div>
                           <div className="flex-1">
-                            <div className="text-xs mb-1">
+                            <div className="text-xs mb-1" style={{ color: currentThemeStyle.text }}>
                               <span className="font-bold">Posted by </span>
                               <a href="#" className="text-blue-600 hover:underline">{comment.from}</a>
                               <span> on {comment.time}</span>
