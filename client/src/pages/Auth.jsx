@@ -262,47 +262,7 @@ const Auth = () => {
             </p>
           </div>
 
-          {/* Quick Demo Login */}
-          <div className="mt-6 p-4 bg-purple-900/30 rounded-lg border border-purple-600">
-            <h3 className="text-purple-300 text-sm font-horror font-semibold mb-3 text-center animate-flicker">
-              👻 Quick Demo Login 👻
-            </h3>
-            <div className="grid grid-cols-1 gap-2 text-xs">
-              <button 
-                onClick={() => {
-                  setFormData({...formData, username: 'GhostUser', password: 'spooky123'})
-                  setIsLogin(true)
-                }}
-                className="w-full flex justify-between items-center hover:bg-purple-800/50 p-2 rounded transition-colors text-left"
-              >
-                <span className="text-gray-300">👻 GhostUser</span>
-                <span className="text-purple-400">spooky123</span>
-              </button>
-              <button 
-                onClick={() => {
-                  setFormData({...formData, username: 'ZombieKing', password: 'undead666'})
-                  setIsLogin(true)
-                }}
-                className="w-full flex justify-between items-center hover:bg-purple-800/50 p-2 rounded transition-colors text-left"
-              >
-                <span className="text-gray-300">🧟‍♂️ ZombieKing</span>
-                <span className="text-purple-400">undead666</span>
-              </button>
-              <button 
-                onClick={() => {
-                  setFormData({...formData, username: 'VampireQueen', password: 'bloodmoon'})
-                  setIsLogin(true)
-                }}
-                className="w-full flex justify-between items-center hover:bg-purple-800/50 p-2 rounded transition-colors text-left"
-              >
-                <span className="text-gray-300">🧛‍♀️ VampireQueen</span>
-                <span className="text-purple-400">bloodmoon</span>
-              </button>
-            </div>
-            <p className="text-xs text-gray-500 mt-3 text-center">
-              Click any account to auto-fill and login
-            </p>
-          </div>
+
 
 
         </div>

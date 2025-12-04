@@ -1,55 +1,18 @@
 // Mock authentication service for demo purposes
 import Cookies from 'js-cookie'
 
-// Demo users for testing
-const DEMO_USERS = [
-  {
-    id: '1',
-    username: 'vampire_lord',
-    email: 'vampire@graveyard.com',
-    password: 'bloodmoon123',
-    profile: {
-      avatar: '🧛‍♂️',
-      status: 'Eternal ruler of the digital realm',
-      bio: 'Ancient vampire lord haunting social media since 1847',
-      location: 'Transylvania Castle'
-    }
-  },
-  {
-    id: '2',
-    username: 'gothic_rose',
-    email: 'rose@graveyard.com',
-    password: 'darkrose456',
-    profile: {
-      avatar: '🌹',
-      status: 'Dancing in digital moonlight',
-      bio: 'Gothic princess of the forgotten web',
-      location: 'Moonlit Cemetery'
-    }
-  },
-  {
-    id: '3',
-    username: 'shadow_walker',
-    email: 'shadow@graveyard.com',
-    password: 'midnight789',
-    profile: {
-      avatar: '👤',
-      status: 'Walking between worlds',
-      bio: 'Guardian of lost digital souls',
-      location: 'Digital Void'
-    }
-  }
-]
+// Store for created users (in real app, this would be a database)
+let CREATED_USERS = []
 
 export const mockAuth = {
   async login(username, password) {
     console.log('🔍 MockAuth: Attempting login with:', username, password)
-    console.log('👻 Available users:', DEMO_USERS.map(u => u.username))
+    console.log('👻 Available users:', CREATED_USERS.map(u => u.username))
     
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    const user = DEMO_USERS.find(u => 
+    const user = CREATED_USERS.find(u => 
       (u.username === username || u.email === username) && u.password === password
     )
     
@@ -83,7 +46,7 @@ export const mockAuth = {
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     // Check if user already exists
-    const existingUser = DEMO_USERS.find(u => u.username === username || u.email === email)
+    const existingUser = CREATED_USERS.find(u => u.username === username || u.email === email)
     if (existingUser) {
       return {
         success: false,
@@ -105,6 +68,9 @@ export const mockAuth = {
       }
     }
     
+    // Add to created users array
+    CREATED_USERS.push(newUser)
+    
     const token = btoa(JSON.stringify({ userId: newUser.id, username: newUser.username }))
     Cookies.set('graveyard_token', token, { expires: 7 })
     
@@ -124,7 +90,7 @@ export const mockAuth = {
   async verifyToken(token) {
     try {
       const decoded = JSON.parse(atob(token))
-      const user = DEMO_USERS.find(u => u.id === decoded.userId)
+      const user = CREATED_USERS.find(u => u.id === decoded.userId)
       
       if (user) {
         return {
