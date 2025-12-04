@@ -43,12 +43,17 @@ const DEMO_USERS = [
 
 export const mockAuth = {
   async login(username, password) {
+    console.log('🔍 MockAuth: Attempting login with:', username, password)
+    console.log('👻 Available users:', DEMO_USERS.map(u => u.username))
+    
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     const user = DEMO_USERS.find(u => 
       (u.username === username || u.email === username) && u.password === password
     )
+    
+    console.log('🎯 Found user:', user ? user.username : 'None')
     
     if (user) {
       const token = btoa(JSON.stringify({ userId: user.id, username: user.username }))

@@ -47,16 +47,19 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
+      console.log('🧛‍♂️ Attempting login with:', username)
       const result = await mockAuth.login(username, password)
+      console.log('🦇 Login result:', result)
       
       if (result.success) {
         setToken(result.token)
         setUser(result.user)
+        console.log('✅ Login successful, user set:', result.user)
       }
       
       return result
     } catch (error) {
-      console.error('Login error:', error)
+      console.error('❌ Login error:', error)
       return { success: false, message: 'Login failed' }
     }
   }
