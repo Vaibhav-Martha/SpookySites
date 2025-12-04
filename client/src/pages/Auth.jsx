@@ -134,11 +134,12 @@ const Auth = () => {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <h1 
           ref={titleRef}
-          className="text-5xl md:text-7xl font-gothic text-blood-red mb-8 text-center gothic-text"
+          className="text-5xl md:text-7xl font-horror text-blood-red mb-8 text-center gothic-text drop-shadow-2xl"
+          style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.8), 0 0 20px rgba(139,0,0,0.5)' }}
         >
           {isLogin ? 'Enter the' : 'Join the'}
           <br />
-          <span className="text-ghost-white">Digital Graveyard</span>
+          <span className="text-ghost-white animate-flicker">Digital Graveyard</span>
         </h1>
         
         <div 
@@ -146,10 +147,10 @@ const Auth = () => {
           className="bg-black/80 border-4 border-purple-600 rounded-lg p-8 w-full max-w-md shadow-2xl"
         >
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-purple-400 mb-2">
+            <h2 className="text-2xl font-horror font-bold text-purple-400 mb-2 animate-pulse-glow">
               {isLogin ? '👻 Sign In' : '🪦 Create Account'}
             </h2>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-300 text-sm font-medieval italic">
               {isLogin 
                 ? 'Welcome back, digital spirit...' 
                 : 'Register your soul in the graveyard...'
@@ -159,7 +160,7 @@ const Auth = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-purple-300 text-sm font-semibold mb-2">
+              <label className="block text-purple-300 text-sm font-medieval font-semibold mb-2">
                 Username {!isLogin && '/ Email'}
               </label>
               <input
@@ -175,7 +176,7 @@ const Auth = () => {
 
             {!isLogin && (
               <div>
-                <label className="block text-purple-300 text-sm font-semibold mb-2">
+                <label className="block text-purple-300 text-sm font-medieval font-semibold mb-2">
                   Email
                 </label>
                 <input
@@ -191,7 +192,7 @@ const Auth = () => {
             )}
 
             <div>
-              <label className="block text-purple-300 text-sm font-semibold mb-2">
+              <label className="block text-purple-300 text-sm font-medieval font-semibold mb-2">
                 Password
               </label>
               <input
@@ -230,10 +231,10 @@ const Auth = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full spooky-button text-lg py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full spooky-button font-horror text-lg py-3 disabled:opacity-50 disabled:cursor-not-allowed animate-pulse-glow"
             >
               {loading ? (
-                <span className="flex items-center justify-center">
+                <span className="flex items-center justify-center font-medieval">
                   <div className="animate-spin mr-2">⚡</div>
                   {isLogin ? 'Entering...' : 'Registering...'}
                 </span>
@@ -246,7 +247,7 @@ const Auth = () => {
           <div className="mt-6 text-center">
             <button
               onClick={toggleMode}
-              className="text-purple-400 hover:text-purple-300 text-sm underline transition-colors"
+              className="text-purple-400 hover:text-purple-300 text-sm underline transition-colors font-medieval"
             >
               {isLogin 
                 ? "New spirit? Create an account 👻" 
@@ -263,7 +264,7 @@ const Auth = () => {
 
           {/* Quick Demo Login */}
           <div className="mt-6 p-4 bg-purple-900/30 rounded-lg border border-purple-600">
-            <h3 className="text-purple-300 text-sm font-semibold mb-3 text-center">
+            <h3 className="text-purple-300 text-sm font-horror font-semibold mb-3 text-center animate-flicker">
               👻 Quick Demo Login 👻
             </h3>
             <div className="grid grid-cols-1 gap-2 text-xs">
