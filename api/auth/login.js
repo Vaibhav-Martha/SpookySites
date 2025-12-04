@@ -1,6 +1,6 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const { MongoClient } = require('mongodb')
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import { MongoClient } from 'mongodb'
 
 let cachedClient = null
 
