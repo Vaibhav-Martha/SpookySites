@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
+      console.log('Attempting login with base URL:', axios.defaults.baseURL)
       const response = await axios.post('/api/auth/login', {
         username,
         password
@@ -70,6 +71,8 @@ export const AuthProvider = ({ children }) => {
       
       return { success: true, message: response.data.message }
     } catch (error) {
+      console.error('Login error:', error)
+      console.error('Error response:', error.response?.data)
       const errorMessage = error.response?.data?.message || 'Login failed'
       return { success: false, message: errorMessage }
     }
@@ -77,6 +80,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (username, email, password) => {
     try {
+      console.log('Attempting signup with base URL:', axios.defaults.baseURL)
       const response = await axios.post('/api/auth/signup', {
         username,
         email,
