@@ -1,13 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import axios from 'axios'
-
-// Configure axios base URL for development
-const API_BASE_URL = import.meta.env.PROD 
-  ? '' // In production, API calls will go to same domain
-  : 'http://localhost:5001' // In development, use local server
-
-axios.defaults.baseURL = API_BASE_URL
+import { mockAuth } from '../services/mockAuth'
 
 const AuthContext = createContext()
 
@@ -29,8 +22,6 @@ export const AuthProvider = ({ children }) => {
     const savedToken = Cookies.get('graveyard_token')
     if (savedToken) {
       setToken(savedToken)
-      // Set axios default header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`
       // Verify token and get user profile
       verifyToken(savedToken)
     } else {
@@ -40,8 +31,12 @@ export const AuthProvider = ({ children }) => {
 
   const verifyToken = async (token) => {
     try {
-      const response = await axios.get('/api/auth/profile')
-      setUser(response.data.user)
+      const user = await mockAuth.verifyToken(token)
+      if (user) {
+        setUser(user)
+      } else {
+        logout() // Clear invalid token
+      }
     } catch (error) {
       console.error('Token verification failed:', error)
       logout() // Clear invalid token
@@ -52,48 +47,38 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      console.log('Attempting login with base URL:', axios.defaults.baseURL)
-      const response = await axios.post('/api/auth/login', {
-        username,
-        password
-      })
-
-      const { token: newToken, user: userData } = response.data
+      const result = await mockAuth.login(username, password)
       
-      // Save token to cookie (expires in 7 days)
-      Cookies.set('graveyard_token', newToken, { expires: 7 })
+      if (result.success) {
+        setToken(result.token)
+        setUser(result.user)
+      }
       
-      // Set axios default header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`
-      
-      setToken(newToken)
-      setUser(userData)
-      
-      return { success: true, message: response.data.message }
+      return result
     } catch (error) {
       console.error('Login error:', error)
-      console.error('Error response:', error.response?.data)
-      const errorMessage = error.response?.data?.message || 'Login failed'
-      return { success: false, message: errorMessage }
+      return { success: false, message: 'Login failed' }
     }
   }
 
   const signup = async (username, email, password) => {
     try {
-      console.log('Attempting signup with base URL:', axios.defaults.baseURL)
-      const response = await axios.post('/api/auth/signup', {
-        username,
-        email,
-        password
-      })
-
-      const { token: newToken, user: userData } = response.data
+      const result = await mockAuth.signup(username, email, password)
+      
+      if (result.success) {
+        setToken(result.token)
+        setUser(result.user)
+      }
+      
+      return result
+    } catch (error) {
+      console.error('Signup error:', error)
+      return { success: false, message: 'Signup failed' }
+    }
+  }
       
       // Save token to cookie (expires in 7 days)
       Cookies.set('graveyard_token', newToken, { expires: 7 })
-      
-      // Set axios default header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`
       
       setToken(newToken)
       setUser(userData)
@@ -110,14 +95,8 @@ export const AuthProvider = ({ children }) => {
     // Remove token from cookie
     Cookies.remove('graveyard_token')
     
-    // Remove axios default header
-    delete axios.defaults.headers.common['Authorization']
-    
     setToken(null)
     setUser(null)
-    
-    // Optional: Call logout endpoint
-    axios.post('/api/auth/logout').catch(() => {})
   }
 
   const value = {
