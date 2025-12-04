@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { api } from '../services/api'
+import { mockData } from '../services/mockData'
 
 const OrkutOriginalDesign = () => {
   const navigate = useNavigate()
@@ -49,8 +49,7 @@ const OrkutOriginalDesign = () => {
   const loadScraps = async () => {
     try {
       setLoading(true)
-      const posts = await api.getPosts('orkut')
-      const scrapPosts = posts.filter(post => post.type === 'scrap')
+      const scrapPosts = await mockData.getScraps('orkut')
       setScraps(scrapPosts)
     } catch (err) {
       setError('Failed to load scraps')
@@ -63,13 +62,12 @@ const OrkutOriginalDesign = () => {
   const addScrap = async () => {
     if (newScrap.trim()) {
       try {
-        const scrapData = {
-          type: 'scrap',
-          content: newScrap,
-          recipient: user._id // Posting to own profile for now
-        }
-        
-        const newScrapPost = await api.createPost('orkut', scrapData)
+        const newScrapPost = await mockData.createScrap(
+          'orkut', 
+          newScrap, 
+          user._id, 
+          user.username
+        )
         setScraps(prev => [newScrapPost, ...prev])
         setNewScrap('')
       } catch (err) {
@@ -81,7 +79,7 @@ const OrkutOriginalDesign = () => {
 
   const handleDeleteScrap = async (scrapId) => {
     try {
-      await api.deletePost(scrapId)
+      await mockData.deleteScrap(scrapId)
       setScraps(prev => prev.filter(scrap => scrap._id !== scrapId))
     } catch (err) {
       setError('Failed to delete scrap')
@@ -93,7 +91,7 @@ const OrkutOriginalDesign = () => {
     const reply = prompt('Write your reply:')
     if (reply && reply.trim()) {
       try {
-        await api.replyToPost(scrapId, reply.trim())
+        await mockData.replyToScrap(scrapId, reply.trim(), user._id, user.username)
         loadScraps() // Reload to show the reply
       } catch (err) {
         setError('Failed to post reply')
@@ -108,12 +106,8 @@ const OrkutOriginalDesign = () => {
 
   const loadProfileStats = async () => {
     try {
-      const profile = await api.getProfile()
-      setProfileStats({
-        views: profile.stats?.views || Math.floor(Math.random() * 500) + 100,
-        friends: profile.stats?.friends || Math.floor(Math.random() * 50) + 10,
-        karma: profile.stats?.karma || Math.floor(Math.random() * 100) + 20
-      })
+      const stats = await mockData.getProfileStats(user._id)
+      setProfileStats(stats)
     } catch (err) {
       console.error('Error loading profile stats:', err)
     }
@@ -121,7 +115,7 @@ const OrkutOriginalDesign = () => {
 
   const loadPhotos = async () => {
     try {
-      const userPhotos = await api.getPhotos()
+      const userPhotos = await mockData.getPhotos(user._id)
       setPhotos(userPhotos)
     } catch (err) {
       console.error('Error loading photos:', err)
@@ -133,7 +127,7 @@ const OrkutOriginalDesign = () => {
     if (file) {
       try {
         setUploadingPhoto(true)
-        const uploadedPhoto = await api.uploadPhoto(file, 'Orkut profile photo')
+        const uploadedPhoto = await mockData.uploadPhoto(user._id, file, 'Orkut profile photo')
         setPhotos(prev => [uploadedPhoto, ...prev])
         alert('📸 Photo uploaded successfully!')
       } catch (err) {
@@ -178,7 +172,7 @@ const OrkutOriginalDesign = () => {
     if (searchQuery.trim()) {
       try {
         setSearching(true)
-        const results = await api.searchUsers(searchQuery.trim())
+        const results = await mockData.searchUsers(searchQuery.trim())
         setSearchResults(results)
       } catch (err) {
         setError('Failed to search users')
